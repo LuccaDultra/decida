@@ -3,66 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    
-    <!-- Configurações de Web App (PWA) -->
     <meta name="theme-color" content="#ffffff">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="mobile-web-app-capable" content="yes">
-    
     <title>Decida.Ai</title>
     
-    <!-- Fonte Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        // Paleta Light & Fresh (Clean UI)
-                        app: {
-                            base: '#f8fafc',    // Slate 50 (Fundo Principal)
-                            surface: '#ffffff', // Branco (Cards)
-                            subtle: '#f1f5f9',  // Slate 100 (Hover/Bordas)
-                            text: '#0f172a',    // Slate 900 (Texto Principal)
-                            muted: '#64748b',   // Slate 500 (Texto Secundário)
-                        },
-                        brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#0ea5e9', // Sky Blue Vibrante
-                            600: '#0284c7', // Sky Darker
-                        },
-                        accent: {
-                            500: '#f97316', // Orange
-                            600: '#ea580c',
-                        }
+                        app: { base: '#f8fafc', text: '#0f172a' },
+                        brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#0ea5e9', 600: '#0284c7' }
                     },
-                    animation: {
-                        'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                        'fade-in': 'fadeIn 0.5s ease-out',
-                    },
-                    keyframes: {
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        }
+                    animation: { 'slide-up': 'slideUp 0.4s ease-out', 'fade-in': 'fadeIn 0.5s ease-out' },
+                    keyframes: { 
+                        slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } }
                     }
                 }
             }
@@ -70,108 +32,84 @@
     </script>
     <style>
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        
-        /* Glassmorphism Light */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
+        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); border-top: 1px solid rgba(0,0,0,0.05); }
         .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
     </style>
 </head>
 <body class="bg-app-base text-app-text font-sans antialiased overflow-hidden h-screen flex flex-col">
 
     <!-- Top Bar -->
-    <header id="top-bar" class="hidden px-6 pt-12 pb-4 bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-app-subtle">
+    <header id="top-bar" class="hidden px-6 pt-12 pb-4 bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100">
         <div class="flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full p-[2px] bg-gradient-to-tr from-brand-500 to-accent-500">
-                    <img src="https://i.pravatar.cc/150?u=viajante" alt="User" class="w-full h-full rounded-full object-cover border-2 border-white">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-500 to-orange-400 p-[2px]">
+                    <img src="https://i.pravatar.cc/150?u=viajante" class="rounded-full border-2 border-white w-full h-full object-cover">
                 </div>
                 <div>
-                    <p class="text-xs text-app-muted font-medium uppercase tracking-wider">Olá,</p>
-                    <h2 id="header-username" class="text-lg font-bold leading-none text-app-text">Viajante</h2>
+                    <p class="text-xs text-slate-500 font-bold uppercase">Olá,</p>
+                    <h2 id="header-username" class="text-lg font-bold leading-none">Viajante</h2>
                 </div>
             </div>
-            <button class="p-2 rounded-full bg-app-subtle text-app-text hover:bg-slate-200 transition">
-                <i data-lucide="bell" class="w-5 h-5"></i>
+            <button class="p-2 rounded-full bg-slate-50 hover:bg-slate-100 transition">
+                <i data-lucide="bell" class="w-5 h-5 text-slate-600"></i>
             </button>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main class="flex-1 overflow-y-auto no-scrollbar relative z-10 pb-24 bg-app-base">
         
-        <!-- 1. LOGIN (Tema Praia/Light) -->
-        <section id="step-login" class="h-full flex flex-col relative animate-fade-in bg-white">
-            <!-- Imagem de Fundo (Praia) -->
+        <!-- 1. LOGIN -->
+        <section id="step-login" class="h-full flex flex-col relative bg-white animate-fade-in">
             <div class="absolute inset-0 z-0 h-[60%]">
                 <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop" class="w-full h-full object-cover">
-                <!-- Gradiente Suave para o Branco -->
                 <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white"></div>
             </div>
-
-            <!-- Conteúdo (Fundo Branco em baixo) -->
             <div class="relative z-10 flex-1 flex flex-col justify-end px-8 pb-12 pt-20">
-                <div class="mb-8 bg-white/60 backdrop-blur-sm p-6 rounded-3xl border border-white/50 shadow-xl shadow-brand-500/10">
-                    
-                    <!-- [ÁREA DA LOGO ATUALIZADA - AUMENTADA] -->
-                    <div class="w-64 h-64 mx-auto mb-4 flex items-center justify-center relative hover:scale-105 transition-transform duration-300">
-                        <img src="https://luccadultra.github.io/meus-assets/logo.png" alt="Logo Decida.Ai" class="w-full h-full object-contain filter drop-shadow-sm">
+                <div class="mb-8 bg-white/60 backdrop-blur-sm p-6 rounded-3xl border border-white/50 shadow-xl">
+                    <div class="w-48 h-48 mx-auto mb-4 flex items-center justify-center relative hover:scale-105 transition-transform duration-300">
+                        <img src="https://luccadultra.github.io/meus-assets/logo.png" class="w-full h-full object-contain filter drop-shadow-sm">
                     </div>
-                    <!-- [FIM ÁREA DA LOGO] -->
-
-                    <!-- Título em texto removido pois a logo já contém o nome -->
-                    <!-- <h1 class="text-4xl font-bold tracking-tight mb-2 text-slate-900 text-center">Decida<span class="text-brand-500">.Ai</span></h1> -->
-                    
                     <p class="text-lg text-slate-600 text-center font-medium">Descubra seu próximo paraíso.</p>
                 </div>
-
                 <form onsubmit="handleLogin(event)" class="space-y-4">
-                    <div class="space-y-3">
-                        <div class="relative">
-                            <i data-lucide="mail" class="absolute left-4 top-4 w-5 h-5 text-slate-400"></i>
-                            <input type="text" id="login-user" required placeholder="Email"
-                                   class="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all shadow-sm">
-                        </div>
-                        <div class="relative">
-                            <i data-lucide="lock" class="absolute left-4 top-4 w-5 h-5 text-slate-400"></i>
-                            <input type="password" required placeholder="Senha"
-                                   class="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all shadow-sm">
-                        </div>
+                    <div class="relative">
+                        <i data-lucide="mail" class="absolute left-4 top-4 w-5 h-5 text-slate-400"></i>
+                        <input type="text" id="login-user" required placeholder="Email" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
                     </div>
-                    
-                    <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-500/20 transition-all active:scale-95 flex justify-center items-center gap-2 mt-2">
-                        <span>Começar Viagem</span>
-                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                    </button>
-                    
-                    <p class="text-center text-sm text-slate-500 mt-4">Ainda não tem conta? <span class="text-brand-600 font-bold">Cadastre-se</span></p>
+                    <div class="relative">
+                        <i data-lucide="lock" class="absolute left-4 top-4 w-5 h-5 text-slate-400"></i>
+                        <input type="password" required placeholder="Senha" class="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                    </div>
+                    <button type="submit" class="w-full bg-brand-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-500/20 active:scale-95 transition-transform">Entrar</button>
                 </form>
             </div>
         </section>
 
-        <!-- 2. DASHBOARD -->
+        <!-- 2. DASHBOARD (HOME) -->
         <section id="step-dashboard" class="hidden px-6 pt-6 animate-slide-up pb-20">
-            <!-- Hero Card (Sugestão de Verão) -->
-            <div class="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden mb-8 group cursor-pointer shadow-xl shadow-brand-500/10" onclick="handleSuggestion()">
+            <!-- Card Individual -->
+            <div class="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden mb-6 shadow-xl group cursor-pointer" onclick="goToStep('step-plan')">
                 <img src="https://images.unsplash.com/photo-1590523741831-ab7e8b8f9c7f?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                <div class="absolute bottom-0 left-0 p-6 w-full">
-                    <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold border border-white/30 mb-3 backdrop-blur-md">
-                        <i data-lucide="sun" class="w-3 h-3 text-yellow-300 fill-yellow-300"></i> Sugestão de Verão
-                    </span>
-                    <h3 class="text-3xl font-bold text-white leading-tight mb-2">Vai uma praia?</h3>
-                    <p class="text-white/90 text-sm font-medium">Encontramos destinos de sol perfeitos para seu perfil.</p>
+                <div class="absolute bottom-0 left-0 p-6">
+                    <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-md mb-2 inline-block border border-white/30">IA Pessoal</span>
+                    <h3 class="text-3xl font-bold text-white">Viagem Solo</h3>
+                    <p class="text-white/90 text-sm">Crie seu roteiro perfeito</p>
                 </div>
             </div>
 
-            <!-- Atalhos -->
-            <div class="mb-8">
+            <!-- Card Grupos (NOVO) -->
+            <div class="bg-gradient-to-r from-blue-50 to-white border border-blue-100 p-6 rounded-2xl flex items-center justify-between cursor-pointer shadow-sm hover:shadow-md transition mb-6" onclick="loadGroups()">
+                <div>
+                    <h4 class="font-bold text-blue-900 text-lg">Viagens em Grupo</h4>
+                    <p class="text-xs text-blue-600 mt-1">Vote e decida com amigos</p>
+                </div>
+                <div class="bg-white p-4 rounded-full shadow-sm text-blue-500 border border-blue-50">
+                    <i data-lucide="users" class="w-6 h-6"></i>
+                </div>
+            </div>
+
+            <div class="mb-4">
                 <h4 class="text-lg font-bold text-app-text mb-4">Acesso Rápido</h4>
                 <div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
                     <div onclick="goToStep('step-plan')" class="shrink-0 w-24 flex flex-col items-center gap-2 cursor-pointer group">
@@ -181,81 +119,37 @@
                         <span class="text-xs font-medium text-slate-600">Novo</span>
                     </div>
                     <div class="shrink-0 w-24 flex flex-col items-center gap-2 cursor-pointer group">
-                        <div class="w-16 h-16 rounded-2xl bg-white border border-slate-100 flex items-center justify-center group-active:scale-95 transition-all shadow-sm group-hover:shadow-md text-slate-400 group-hover:text-brand-500">
+                        <div class="w-16 h-16 rounded-2xl bg-white border border-slate-100 flex items-center justify-center group-active:scale-95 transition-all shadow-sm group-hover:shadow-md text-slate-400 hover:text-brand-500">
                             <i data-lucide="history" class="w-7 h-7"></i>
                         </div>
                         <span class="text-xs font-medium text-slate-600">Histórico</span>
-                    </div>
-                    <div class="shrink-0 w-24 flex flex-col items-center gap-2 cursor-pointer group">
-                        <div class="w-16 h-16 rounded-2xl bg-white border border-slate-100 flex items-center justify-center group-active:scale-95 transition-all shadow-sm group-hover:shadow-md text-slate-400 group-hover:text-accent-500">
-                            <i data-lucide="heart" class="w-7 h-7"></i>
-                        </div>
-                        <span class="text-xs font-medium text-slate-600">Favoritos</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Lista de Viagens -->
-            <div class="mb-4">
-                <h4 class="text-lg font-bold text-app-text mb-4">Suas Viagens</h4>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition cursor-pointer">
-                        <div class="w-16 h-16 rounded-xl bg-cover bg-center shrink-0 shadow-inner" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=2073&auto=format&fit=crop')"></div>
-                        <div class="flex-1">
-                            <h5 class="font-bold text-slate-800">Paris, França</h5>
-                            <p class="text-xs text-slate-500 font-medium">Out 2024 • Cultural</p>
-                        </div>
-                        <i data-lucide="chevron-right" class="w-5 h-5 text-slate-300"></i>
-                    </div>
-                    
-                    <div class="flex items-center gap-4 p-4 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition cursor-pointer">
-                        <div class="w-16 h-16 rounded-xl bg-cover bg-center shrink-0 shadow-inner" style="background-image: url('https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?q=80&w=2070&auto=format&fit=crop')"></div>
-                        <div class="flex-1">
-                            <h5 class="font-bold text-slate-800">Noronha, BR</h5>
-                            <p class="text-xs text-slate-500 font-medium">Jan 2025 • Praia</p>
-                        </div>
-                        <i data-lucide="chevron-right" class="w-5 h-5 text-slate-300"></i>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. PLAN / INPUT -->
-        <section id="step-plan" class="hidden px-6 pt-8 animate-slide-up min-h-full bg-app-base">
-            <div class="mb-8">
-                <button onclick="goToStep('step-dashboard')" class="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center mb-6 hover:bg-slate-50 transition shadow-sm">
-                    <i data-lucide="arrow-left" class="w-5 h-5 text-slate-700"></i>
-                </button>
-                <h1 class="text-3xl font-bold text-slate-900 mb-2">Para onde?</h1>
-                <p class="text-slate-500">Planeje sua próxima aventura.</p>
+        <!-- 3. PLAN (INDIVIDUAL) -->
+        <section id="step-plan" class="hidden px-6 pt-8 animate-slide-up min-h-full">
+            <div class="mb-8 flex items-center gap-4">
+                <button onclick="goToStep('step-dashboard')" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-50"><i data-lucide="arrow-left" class="w-5 h-5 text-slate-700"></i></button>
+                <h1 class="text-2xl font-bold text-slate-900">IA Pessoal</h1>
             </div>
-
             <form onsubmit="goToReview(event)" class="space-y-6">
-                <!-- Location Input -->
-                <div class="relative group">
-                    <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                        <div class="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></div>
-                    </div>
-                    <input type="text" id="plan-dest" placeholder="Digite o destino (ex: Roma)" required 
-                           class="w-full bg-white border border-slate-200 rounded-xl py-4 pl-10 pr-4 text-slate-900 text-lg placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all shadow-sm">
+                <div class="relative">
+                    <i data-lucide="map-pin" class="absolute left-4 top-4 w-5 h-5 text-slate-400"></i>
+                    <input type="text" id="plan-dest" placeholder="Destino (ex: Aracaju)" required class="w-full border border-slate-200 rounded-xl py-4 pl-12 pr-4 focus:ring-2 focus:ring-brand-500 outline-none">
                 </div>
-
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <label class="text-xs font-bold text-slate-400 uppercase mb-2 block tracking-wider">Orçamento</label>
-                        <div class="flex items-center gap-2">
-                            <span class="text-brand-500 font-bold text-lg">R$</span>
-                            <input type="number" id="plan-budget" placeholder="5000" required 
-                                   class="w-full bg-transparent text-slate-900 font-bold text-lg focus:outline-none placeholder-slate-300">
-                        </div>
+                    <div class="relative">
+                        <span class="absolute left-4 top-4 text-slate-400 font-bold text-sm">R$</span>
+                        <input type="number" id="plan-budget" placeholder="2000" required class="w-full border border-slate-200 rounded-xl py-4 pl-10 pr-4 focus:ring-2 focus:ring-brand-500 outline-none">
                     </div>
-                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
-                        <label class="text-xs font-bold text-slate-400 uppercase mb-2 block tracking-wider">Dias</label>
-                        <input type="number" id="plan-days" placeholder="7" required 
-                               class="w-full bg-transparent text-slate-900 font-bold text-lg focus:outline-none placeholder-slate-300">
+                    <div class="relative">
+                        <input type="number" id="plan-days" placeholder="3" required class="w-full border border-slate-200 rounded-xl py-4 pl-4 pr-4 focus:ring-2 focus:ring-brand-500 outline-none">
+                        <span class="absolute right-4 top-4 text-slate-400 text-sm">dias</span>
                     </div>
                 </div>
-
+                
                 <!-- Transporte -->
                 <div>
                     <label class="text-xs font-bold text-slate-500 uppercase mb-3 block tracking-wider ml-1">Transporte</label>
@@ -275,82 +169,102 @@
                     </div>
                 </div>
 
-                <button type="submit" class="fixed bottom-6 left-6 right-6 bg-slate-900 text-white font-bold py-4 rounded-xl shadow-xl z-50 flex justify-center items-center gap-2 active:scale-95 transition-transform">
-                    <span>Continuar</span>
-                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                <button type="submit" class="w-full bg-slate-900 text-white font-bold py-4 rounded-xl shadow-xl flex justify-center items-center gap-2 active:scale-95 transition-transform">
+                    <span>Gerar Roteiro</span>
+                    <i data-lucide="sparkles" class="w-5 h-5 text-yellow-300"></i>
                 </button>
             </form>
         </section>
 
-        <!-- 4. QUIZ -->
-        <section id="step-quiz" class="hidden px-6 pt-12 animate-slide-up h-full bg-app-base">
-            <div class="max-w-md mx-auto">
-                <div class="w-full h-1 bg-slate-200 rounded-full mb-8 overflow-hidden">
-                    <div class="h-full bg-brand-500 w-1/2 rounded-full"></div>
+        <!-- 4. LISTA DE GRUPOS (NOVA ABA) -->
+        <section id="step-groups-list" class="hidden px-6 pt-6 animate-slide-up pb-24">
+            <h1 class="text-3xl font-bold mb-2 text-slate-900">Meus Grupos</h1>
+            <p class="text-slate-500 mb-6">Planeje e vote com a galera.</p>
+
+            <div id="groups-container" class="space-y-4">
+                <!-- Grupos serão injetados aqui pelo JS -->
+                <div class="text-center py-10">
+                    <p class="text-slate-400 text-sm">Carregando grupos...</p>
                 </div>
-                
-                <h2 class="text-3xl font-bold text-slate-900 mb-2">Seu Perfil</h2>
-                <p class="text-slate-500 mb-8">Personalize sua experiência.</p>
+            </div>
 
-                <form onsubmit="handleQuiz(event)" class="space-y-6">
-                    <div>
-                        <label class="text-sm font-bold text-slate-700 mb-2 block uppercase text-xs tracking-wider">Nome</label>
-                        <input type="text" id="quiz-name" placeholder="Como te chamamos?" required 
-                               class="w-full bg-white border border-slate-200 rounded-xl p-4 text-slate-900 focus:ring-2 focus:ring-brand-500 focus:outline-none shadow-sm">
+            <button onclick="goToStep('step-group-new')" class="mt-6 w-full py-4 border-2 border-dashed border-slate-300 rounded-xl text-slate-500 font-bold hover:bg-slate-50 hover:border-brand-500 hover:text-brand-500 transition flex items-center justify-center gap-2">
+                <i data-lucide="plus"></i> Criar Novo Grupo
+            </button>
+        </section>
+
+        <!-- 5. NOVO GRUPO (NOVA TELA) -->
+        <section id="step-group-new" class="hidden px-6 pt-8 animate-slide-up">
+            <div class="mb-6 flex items-center gap-4">
+                <button onclick="loadGroups()" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-50"><i data-lucide="arrow-left" class="w-5 h-5 text-slate-700"></i></button>
+                <h1 class="text-2xl font-bold text-slate-900">Novo Grupo</h1>
+            </div>
+            <form onsubmit="handleCreateGroup(event)" class="space-y-4">
+                <div>
+                    <label class="font-bold text-xs uppercase text-slate-500 ml-1">Nome do Grupo</label>
+                    <input type="text" id="group-name" placeholder="Ex: Despedida do João" required class="w-full border border-slate-200 rounded-xl py-4 px-4 mt-1 focus:ring-2 focus:ring-brand-500 outline-none">
+                </div>
+                <div>
+                    <label class="font-bold text-xs uppercase text-slate-500 ml-1">Destino</label>
+                    <input type="text" id="group-dest" placeholder="Ex: Rio de Janeiro" required class="w-full border border-slate-200 rounded-xl py-4 px-4 mt-1 focus:ring-2 focus:ring-brand-500 outline-none">
+                </div>
+                <div>
+                    <label class="font-bold text-xs uppercase text-slate-500 ml-1">Estilo da Galera</label>
+                    <div class="relative">
+                        <select id="group-style" class="w-full border border-slate-200 rounded-xl py-4 px-4 mt-1 bg-white appearance-none focus:ring-2 focus:ring-brand-500 outline-none">
+                            <option>Amigos / Festa</option>
+                            <option>Família / Tranquilo</option>
+                            <option>Casal / Romântico</option>
+                            <option>Aventura / Esportes</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="absolute right-4 top-6 w-5 h-5 text-slate-400 pointer-events-none"></i>
                     </div>
+                </div>
+                <button type="submit" class="w-full bg-brand-500 text-white font-bold py-4 rounded-xl shadow-lg active:scale-95 transition-transform flex justify-center items-center gap-2">
+                    <span>Criar e Gerar Opções</span>
+                    <i data-lucide="zap" class="w-5 h-5 text-yellow-300"></i>
+                </button>
+            </form>
+        </section>
 
-                    <div>
-                        <label class="text-sm font-bold text-slate-700 mb-4 block uppercase text-xs tracking-wider">Estilo de Viagem</label>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div onclick="selectOption(this, 'style', 'Praia & Sol')" class="quiz-option cursor-pointer bg-white border border-slate-200 p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-brand-300 transition text-center shadow-sm">
-                                <i data-lucide="sun" class="w-8 h-8 text-slate-400 transition-colors"></i>
-                                <span class="text-sm font-bold text-slate-600">Sol</span>
-                            </div>
-                            <div onclick="selectOption(this, 'style', 'Urbano')" class="quiz-option cursor-pointer bg-white border border-slate-200 p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-brand-300 transition text-center shadow-sm">
-                                <i data-lucide="building" class="w-8 h-8 text-slate-400 transition-colors"></i>
-                                <span class="text-sm font-bold text-slate-600">Cidade</span>
-                            </div>
-                            <div onclick="selectOption(this, 'style', 'Aventura')" class="quiz-option cursor-pointer bg-white border border-slate-200 p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-brand-300 transition text-center shadow-sm">
-                                <i data-lucide="mountain" class="w-8 h-8 text-slate-400 transition-colors"></i>
-                                <span class="text-sm font-bold text-slate-600">Aventura</span>
-                            </div>
-                        </div>
-                        <input type="hidden" id="quiz-style">
-                    </div>
+        <!-- 6. DETALHE DO GRUPO / VOTAÇÃO (NOVA TELA) -->
+        <section id="step-group-detail" class="hidden px-6 pt-6 animate-slide-up pb-24">
+            <div class="mb-6 flex items-center justify-between">
+                <button onclick="loadGroups()" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-50"><i data-lucide="arrow-left" class="w-5 h-5 text-slate-700"></i></button>
+                <div class="text-right">
+                    <h2 id="detail-group-name" class="font-bold text-lg leading-none text-slate-900">Nome</h2>
+                    <p id="detail-group-dest" class="text-xs text-slate-500">Destino</p>
+                </div>
+            </div>
 
-                    <button type="submit" class="w-full mt-8 bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-500/20 transition-all">
-                        Finalizar Perfil
-                    </button>
-                </form>
+            <div class="bg-blue-50 border border-blue-100 p-4 rounded-xl mb-6 flex items-start gap-3">
+                <i data-lucide="info" class="w-5 h-5 text-blue-500 shrink-0 mt-1"></i>
+                <p class="text-xs text-blue-800 leading-relaxed">A IA gerou 3 opções baseadas no perfil do grupo. <strong>Vote na sua favorita</strong> para definir o roteiro final!</p>
+            </div>
+
+            <div id="voting-container" class="space-y-6">
+                <!-- Opções de votação injetadas aqui -->
             </div>
         </section>
 
-        <!-- 5. RESULTADO -->
+        <!-- 7. RESULTADO INDIVIDUAL -->
         <section id="step-result" class="hidden animate-slide-up pb-24 bg-white min-h-full">
             <div class="relative h-72">
                 <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
-                
                 <button onclick="goToStep('step-dashboard')" class="absolute top-6 left-6 p-2 rounded-full bg-white/90 backdrop-blur-md text-slate-900 shadow-sm hover:scale-105 transition">
                     <i data-lucide="arrow-left" class="w-6 h-6"></i>
                 </button>
-
                 <div class="absolute bottom-0 left-0 p-6 w-full">
-                    <span class="inline-block px-3 py-1 bg-brand-100 text-brand-600 rounded-full text-xs font-bold mb-3 shadow-sm border border-brand-200">
-                        Roteiro Gerado
-                    </span>
-                    <h1 class="text-4xl font-bold text-slate-900 mb-2" id="res-dest-title">Destino</h1>
+                    <span class="inline-block px-3 py-1 bg-brand-100 text-brand-600 rounded-full text-xs font-bold mb-3 shadow-sm border border-brand-200">Roteiro Gerado</span>
+                    <h1 class="text-4xl font-bold text-slate-900 mb-2" id="res-dest-title">...</h1>
                     <div class="flex items-center gap-4 text-sm font-medium text-slate-600">
-                        <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-4 h-4 text-brand-500"></i> <span id="res-days"></span> dias</span>
-                        <span class="flex items-center gap-1"><i data-lucide="wallet" class="w-4 h-4 text-brand-500"></i> R$<span id="res-cost"></span></span>
+                        <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-4 h-4 text-brand-500"></i> <span id="res-days">...</span> dias</span>
+                        <span class="flex items-center gap-1"><i data-lucide="wallet" class="w-4 h-4 text-brand-500"></i> R$<span id="res-cost">...</span></span>
                     </div>
                 </div>
             </div>
-
-            <div class="px-6 mt-4" id="dynamic-content">
-                <!-- Conteúdo injetado -->
-            </div>
-            
+            <div class="px-6 mt-4" id="dynamic-content"></div>
             <div class="px-6 mt-8 mb-8">
                 <button class="w-full py-4 bg-slate-900 text-white rounded-xl font-bold flex justify-center items-center gap-2 hover:bg-slate-800 transition shadow-lg">
                     <i data-lucide="download" class="w-5 h-5"></i> Salvar PDF
@@ -358,18 +272,50 @@
             </div>
         </section>
         
-        <!-- Loading -->
-        <div id="step-loading" class="hidden absolute inset-0 bg-white z-50 flex flex-col items-center justify-center p-6 text-center">
-            <div class="w-24 h-24 relative mb-6">
-                <div class="absolute inset-0 border-4 border-slate-100 rounded-full"></div>
-                <div class="absolute inset-0 border-4 border-brand-500 rounded-full border-t-transparent animate-spin"></div>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <!-- Logo no loading também -->
-                    <img src="https://luccadultra.github.io/meus-assets/logo.png" alt="Loading" class="w-12 h-12 object-contain animate-pulse">
+        <!-- 8. QUIZ (PERFIL) -->
+        <section id="step-quiz" class="hidden px-6 pt-12 animate-slide-up h-full bg-app-base">
+            <div class="max-w-md mx-auto">
+                <div class="w-full h-1 bg-slate-200 rounded-full mb-8 overflow-hidden">
+                    <div class="h-full bg-brand-500 w-1/2 rounded-full"></div>
                 </div>
+                <h2 class="text-3xl font-bold text-slate-900 mb-2">Seu Perfil</h2>
+                <p class="text-slate-500 mb-8">Personalize sua experiência.</p>
+                <form onsubmit="handleQuiz(event)" class="space-y-6">
+                    <div>
+                        <label class="text-sm font-bold text-slate-700 mb-2 block uppercase text-xs tracking-wider">Nome</label>
+                        <input type="text" id="quiz-name" placeholder="Como te chamamos?" required class="w-full bg-white border border-slate-200 rounded-xl p-4 text-slate-900 focus:ring-2 focus:ring-brand-500 outline-none shadow-sm">
+                    </div>
+                    <div>
+                        <label class="text-sm font-bold text-slate-700 mb-4 block uppercase text-xs tracking-wider">Estilo de Viagem</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div onclick="selectOption(this, 'style', 'Praia & Sol')" class="quiz-option cursor-pointer bg-white border border-slate-200 p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-brand-300 transition text-center shadow-sm">
+                                <i data-lucide="sun" class="w-8 h-8 text-slate-400"></i>
+                                <span class="text-sm font-bold text-slate-600">Sol</span>
+                            </div>
+                            <div onclick="selectOption(this, 'style', 'Urbano')" class="quiz-option cursor-pointer bg-white border border-slate-200 p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-brand-300 transition text-center shadow-sm">
+                                <i data-lucide="building" class="w-8 h-8 text-slate-400"></i>
+                                <span class="text-sm font-bold text-slate-600">Cidade</span>
+                            </div>
+                            <div onclick="selectOption(this, 'style', 'Aventura')" class="quiz-option cursor-pointer bg-white border border-slate-200 p-6 rounded-2xl flex flex-col items-center gap-3 hover:border-brand-300 transition text-center shadow-sm">
+                                <i data-lucide="mountain" class="w-8 h-8 text-slate-400"></i>
+                                <span class="text-sm font-bold text-slate-600">Aventura</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="quiz-style">
+                    </div>
+                    <button type="submit" class="w-full mt-8 bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-500/20 transition-all">Finalizar Perfil</button>
+                </form>
             </div>
-            <h3 class="text-2xl font-bold text-slate-900 mb-2">Preparando Roteiro</h3>
-            <p class="text-slate-500" id="loading-text">Analisando o clima...</p>
+        </section>
+
+        <!-- LOADING -->
+        <div id="step-loading" class="hidden absolute inset-0 bg-white z-50 flex flex-col items-center justify-center p-6 text-center">
+            <div class="w-32 h-32 relative mb-6">
+                 <!-- Logo usada como loader -->
+                 <img src="https://luccadultra.github.io/meus-assets/logo.png" class="w-full h-full object-contain animate-pulse">
+            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-2">Processando</h3>
+            <p id="loading-text" class="text-slate-500 font-medium">Consultando a IA...</p>
         </div>
 
     </main>
@@ -377,53 +323,52 @@
     <!-- Bottom Nav -->
     <nav id="bottom-nav" class="hidden fixed bottom-0 w-full glass-nav z-50 px-6 py-4 safe-bottom">
         <div class="flex justify-around items-center max-w-md mx-auto text-slate-400">
-            <button onclick="goToStep('step-dashboard')" class="flex flex-col items-center gap-1 text-brand-600 group">
-                <i data-lucide="home" class="w-6 h-6"></i>
+            <button onclick="goToStep('step-dashboard')" class="flex flex-col items-center gap-1 hover:text-brand-600 transition group">
+                <i data-lucide="home" class="w-6 h-6 group-hover:scale-110 transition"></i>
                 <span class="text-[10px] font-bold">Início</span>
             </button>
-            <button onclick="goToStep('step-plan')" class="relative -top-6">
+            <button onclick="loadGroups()" class="flex flex-col items-center gap-1 hover:text-brand-600 transition group">
+                <i data-lucide="users" class="w-6 h-6 group-hover:scale-110 transition"></i>
+                <span class="text-[10px] font-bold">Grupos</span>
+            </button>
+            <button class="relative -top-6" onclick="goToStep('step-plan')">
                 <div class="w-14 h-14 bg-brand-500 rounded-full flex items-center justify-center shadow-xl shadow-brand-500/40 text-white transform transition active:scale-95 border-4 border-white">
                     <i data-lucide="plus" class="w-8 h-8"></i>
                 </div>
             </button>
-            <button class="flex flex-col items-center gap-1 hover:text-slate-900 transition-colors">
-                <i data-lucide="user" class="w-6 h-6"></i>
-                <span class="text-[10px] font-medium">Perfil</span>
+            <button class="flex flex-col items-center gap-1 hover:text-brand-600 transition group">
+                <i data-lucide="map" class="w-6 h-6 group-hover:scale-110 transition"></i>
+                <span class="text-[10px] font-bold">Roteiros</span>
+            </button>
+            <button onclick="goToStep('step-quiz')" class="flex flex-col items-center gap-1 hover:text-brand-600 transition group">
+                <i data-lucide="user" class="w-6 h-6 group-hover:scale-110 transition"></i>
+                <span class="text-[10px] font-bold">Perfil</span>
             </button>
         </div>
     </nav>
 
     <script>
         lucide.createIcons();
-
+        
+        // Estado Global
         const appState = {
             user: { username: '', name: '', style: '' },
-            trip: { destination: '', budget: '', days: '', transport: 'Avião' }
+            trip: { destination: '', budget: '', days: '', transport: 'Avião' },
+            currentGroupId: null
         };
 
+        // --- NAVEGAÇÃO ---
         function goToStep(stepId) {
-            document.querySelectorAll('section, #step-loading').forEach(el => {
-                el.classList.add('hidden');
-                el.classList.remove('animate-slide-up', 'animate-fade-in');
-            });
-
-            const topBar = document.getElementById('top-bar');
-            const bottomNav = document.getElementById('bottom-nav');
-
-            if(stepId === 'step-login' || stepId === 'step-quiz' || stepId === 'step-loading') {
-                topBar.classList.add('hidden');
-                bottomNav.classList.add('hidden');
-            } else {
-                topBar.classList.remove('hidden');
-                bottomNav.classList.remove('hidden');
-            }
+            document.querySelectorAll('section, #step-loading').forEach(el => el.classList.add('hidden'));
+            
+            const isAuth = ['step-login', 'step-loading', 'step-quiz'].includes(stepId);
+            document.getElementById('top-bar').classList.toggle('hidden', isAuth);
+            document.getElementById('bottom-nav').classList.toggle('hidden', isAuth);
 
             const target = document.getElementById(stepId);
             if(target) {
                 target.classList.remove('hidden');
-                void target.offsetWidth; 
-                if(stepId === 'step-login') target.classList.add('animate-fade-in');
-                else target.classList.add('animate-slide-up');
+                target.classList.add('animate-slide-up');
             }
             lucide.createIcons();
         }
@@ -440,26 +385,13 @@
             document.querySelectorAll('.quiz-option').forEach(opt => {
                 opt.classList.remove('border-brand-500', 'bg-brand-50', 'shadow-md');
                 opt.classList.add('border-slate-200', 'bg-white');
-                const icon = opt.querySelector('svg') || opt.querySelector('i');
-                if (icon) {
-                    icon.classList.remove('text-brand-500');
-                    icon.classList.add('text-slate-400');
-                }
-                const text = opt.querySelector('span');
-                if(text) text.classList.remove('text-brand-700');
+                const icon = opt.querySelector('svg');
+                if (icon) icon.classList.replace('text-brand-400', 'text-slate-400'); 
+                // Simplificação para manter estilo
             });
 
             el.classList.remove('border-slate-200', 'bg-white');
             el.classList.add('border-brand-500', 'bg-brand-50', 'shadow-md');
-            
-            const activeIcon = el.querySelector('svg') || el.querySelector('i');
-            if (activeIcon) {
-                activeIcon.classList.remove('text-slate-400');
-                activeIcon.classList.add('text-brand-500');
-            }
-            const activeText = el.querySelector('span');
-            if(activeText) activeText.classList.add('text-brand-700');
-            
             document.getElementById('quiz-' + type).value = value;
         }
 
@@ -470,99 +402,253 @@
             goToStep('step-dashboard');
         }
 
-        function handleSuggestion() {
-            document.getElementById('plan-dest').value = "Trancoso, Bahia";
-            document.getElementById('plan-budget').value = "8000";
-            document.getElementById('plan-days').value = "7";
-            goToStep('step-plan');
+        // --- GRUPOS (LÓGICA NOVA) ---
+        async function loadGroups() {
+            goToStep('step-loading');
+            document.getElementById('loading-text').innerText = "Buscando seus grupos...";
+            
+            try {
+                // Tenta conectar ao backend. Se falhar, usa dados mockados para o user não ficar travado
+                let groups = [];
+                try {
+                    const res = await fetch('/api/groups');
+                    if(res.ok) groups = await res.json();
+                    else throw new Error("API Offline");
+                } catch(err) {
+                    console.log("Backend offline, usando mock");
+                    groups = [
+                        {id: "demo-1", nome: "Despedida do Rafa", destino: "Florianópolis", participantes: 5, opcoes: [
+                            {id: 1, titulo: "Praia Mole & Surf", votos: 3},
+                            {id: 2, titulo: "Lagoa da Conceição", votos: 2},
+                            {id: 3, titulo: "Jurerê Internacional", votos: 0}
+                        ]}
+                    ];
+                }
+
+                const container = document.getElementById('groups-container');
+                container.innerHTML = '';
+                
+                if (groups.length === 0) {
+                    container.innerHTML = '<p class="text-center text-slate-400 py-8">Nenhum grupo encontrado.</p>';
+                }
+
+                groups.forEach(g => {
+                    const totalVotos = g.opcoes ? g.opcoes.reduce((acc, curr) => acc + curr.votos, 0) : 0;
+                    container.innerHTML += `
+                        <div onclick="openGroupDetail('${g.id}')" class="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition cursor-pointer flex items-center justify-between group">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-brand-600 font-bold text-lg">
+                                    ${g.nome.substring(0,2).toUpperCase()}
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-800 group-hover:text-brand-600 transition">${g.nome}</h3>
+                                    <p class="text-xs text-slate-500">${g.destino} • ${g.participantes} membros</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <span class="bg-slate-50 text-slate-600 text-xs font-bold px-2 py-1 rounded-lg border border-slate-100">${totalVotos} votos</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 ml-2 inline"></i>
+                            </div>
+                        </div>
+                    `;
+                });
+                goToStep('step-groups-list');
+                lucide.createIcons();
+            } catch (e) {
+                alert("Erro ao carregar. Tente novamente.");
+                goToStep('step-dashboard');
+            }
         }
 
-        function goToReview(e) {
+        async function handleCreateGroup(e) {
             e.preventDefault();
-            appState.trip.destination = document.getElementById('plan-dest').value;
-            appState.trip.budget = document.getElementById('plan-budget').value;
-            appState.trip.days = document.getElementById('plan-days').value;
+            const nome = document.getElementById('group-name').value;
+            const dest = document.getElementById('group-dest').value;
+            const style = document.getElementById('group-style').value;
             
-            const radios = document.getElementsByName('transport');
-            for (var i = 0; i < radios.length; i++) {
-                if (radios[i].checked) {
-                    appState.trip.transport = radios[i].nextElementSibling.innerText.trim();
-                    break;
-                }
-            }
+            goToStep('step-loading');
+            document.getElementById('loading-text').innerText = "IA gerando opções conflitantes...";
 
+            try {
+                const res = await fetch('/api/groups', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ nome_grupo: nome, destino: dest, estilo_grupo: style })
+                });
+                if(res.ok) {
+                    await loadGroups();
+                } else {
+                    throw new Error("Falha na criação");
+                }
+            } catch (e) {
+                alert("Erro ao criar grupo. Verifique se o backend está rodando.");
+                goToStep('step-dashboard');
+            }
+        }
+
+        async function openGroupDetail(groupId) {
+            goToStep('step-loading');
+            appState.currentGroupId = groupId;
+            try {
+                // Fetch groups again to get fresh data
+                let groups = [];
+                try {
+                    const res = await fetch('/api/groups');
+                    if(res.ok) groups = await res.json();
+                    else throw new Error("API Offline");
+                } catch(err) {
+                    // Mock fallback
+                    groups = [{id: "demo-1", nome: "Despedida do Rafa", destino: "Florianópolis", participantes: 5, opcoes: [
+                            {id: 1, titulo: "Praia Mole & Surf", votos: 3},
+                            {id: 2, titulo: "Lagoa da Conceição", votos: 2},
+                            {id: 3, titulo: "Jurerê Internacional", votos: 0}
+                    ]}];
+                }
+                
+                const grupo = groups.find(g => g.id === groupId);
+                if(grupo) {
+                    renderVoting(grupo);
+                    goToStep('step-group-detail');
+                }
+            } catch (e) {
+                console.error(e);
+                goToStep('step-groups-list');
+            }
+        }
+
+        function renderVoting(grupo) {
+            document.getElementById('detail-group-name').innerText = grupo.nome;
+            document.getElementById('detail-group-dest').innerText = grupo.destino;
+
+            const container = document.getElementById('voting-container');
+            container.innerHTML = '';
+
+            const totalVotos = grupo.opcoes.reduce((acc, curr) => acc + curr.votos, 0) || 1; 
+            const sortedOpcoes = [...grupo.opcoes].sort((a, b) => b.votos - a.votos);
+
+            sortedOpcoes.forEach((op, index) => {
+                const percent = Math.round((op.votos / totalVotos) * 100);
+                const isWinner = index === 0 && op.votos > 0;
+                
+                container.innerHTML += `
+                    <div class="bg-white rounded-2xl border ${isWinner ? 'border-brand-500 shadow-md ring-1 ring-brand-100' : 'border-slate-100'} p-5 relative overflow-hidden transition-all">
+                        ${isWinner ? '<div class="absolute top-0 right-0 bg-brand-500 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl shadow-sm">LÍDER 🏆</div>' : ''}
+                        
+                        <div class="flex justify-between items-start mb-3">
+                            <div>
+                                <h3 class="font-bold text-slate-800 text-lg">${op.titulo}</h3>
+                                <p class="text-xs text-slate-500">${op.descricao || 'Sugestão da IA'}</p>
+                            </div>
+                            <button onclick="castVote(${op.id})" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-brand-50 hover:text-brand-500 hover:border-brand-200 transition active:scale-95">
+                                <i data-lucide="thumbs-up" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <div class="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
+                                <div class="h-full bg-brand-500 rounded-full transition-all duration-1000" style="width: ${percent}%"></div>
+                            </div>
+                            <span class="text-xs font-bold text-slate-600 w-8 text-right">${op.votos}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            lucide.createIcons();
+        }
+
+        async function castVote(opcaoId) {
+            try {
+                const res = await fetch('/api/groups/vote', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ grupo_id: appState.currentGroupId, opcao_id: opcaoId })
+                });
+                
+                if(res.ok) {
+                    const grupoAtualizado = await res.json();
+                    renderVoting(grupoAtualizado);
+                } else {
+                    alert("Erro ao votar. Backend indisponível?");
+                }
+            } catch (e) {
+                alert("Erro ao comunicar com servidor.");
+            }
+        }
+
+        // --- INDIVIDUAL (MANTIDO) ---
+        async function goToReview(e) {
+            e.preventDefault();
             goToStep('step-loading');
             
-            const msgs = ["Buscando passagens...", "Verificando hotéis...", "Criando roteiro...", "Finalizando..."];
-            let c = 0;
-            const interval = setInterval(() => {
-                document.getElementById('loading-text').innerText = msgs[c++ % msgs.length];
-            }, 800);
+            const dest = document.getElementById('plan-dest').value;
+            const days = document.getElementById('plan-days').value;
+            const budget = document.getElementById('plan-budget').value;
+            
+            // Transport
+            let transport = 'Avião';
+            const radios = document.getElementsByName('transport');
+            for(let i=0; i<radios.length; i++) if(radios[i].checked) transport = radios[i].value;
 
-            setTimeout(() => {
-                clearInterval(interval);
-                generateResult();
+            document.getElementById('loading-text').innerText = "IA criando roteiro individual...";
+            
+            const promptTexto = `Viagem para ${dest}, ${days} dias, orçamento R$${budget}, indo de ${transport}. Perfil: ${appState.user.style}`;
+
+            try {
+                const res = await fetch('/api/gerar-viagem', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ prompt_cliente: promptTexto })
+                });
+                
+                const data = await res.json();
+                
+                // Preenche UI
+                document.getElementById('res-dest-title').innerText = data.destino || dest;
+                document.getElementById('res-days').innerText = days;
+                document.getElementById('res-cost').innerText = data.custo_estimado || budget;
+
+                let roteiroHtml = '';
+                if(data.roteiro_resumido && Array.isArray(data.roteiro_resumido)) {
+                     roteiroHtml = data.roteiro_resumido.map((dia, i) => `
+                        <div class="mb-4 relative pl-6 border-l-2 border-brand-200">
+                            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-100 border-2 border-brand-500"></div>
+                            <strong class="text-brand-600 text-sm block mb-1">Dia ${i+1}</strong>
+                            <p class="text-slate-700 text-sm leading-relaxed">${dia}</p>
+                        </div>
+                     `).join('');
+                } else {
+                    roteiroHtml = '<p>Roteiro indisponível.</p>';
+                }
+
+                document.getElementById('dynamic-content').innerHTML = `
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 mb-6">
+                        <h4 class="font-bold text-slate-800 text-sm mb-2 flex items-center gap-2">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-yellow-500"></i> Motivo do Match
+                        </h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">${data.motivo_match || 'Personalizado para você.'}</p>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h3 class="font-bold text-lg mb-4 text-slate-900">Itinerário</h3>
+                        ${roteiroHtml}
+                    </div>
+
+                    <div class="bg-gradient-to-r from-orange-50 to-white border border-orange-100 p-4 rounded-xl flex gap-3">
+                         <i data-lucide="lightbulb" class="w-5 h-5 text-orange-500 mt-1"></i>
+                         <div>
+                            <strong class="text-orange-700 text-xs uppercase font-bold">Dica de Ouro</strong>
+                            <p class="text-sm text-slate-700 mt-1">${data.dica_extra || 'Aproveite a viagem!'}</p>
+                         </div>
+                    </div>
+                `;
+                
                 goToStep('step-result');
-            }, 3000);
-        }
+                lucide.createIcons();
 
-        function generateResult() {
-            document.getElementById('res-dest-title').innerText = appState.trip.destination;
-            document.getElementById('res-days').innerText = appState.trip.days;
-            document.getElementById('res-cost').innerText = (appState.trip.budget / appState.trip.days).toFixed(0) + "/dia";
-
-            const html = `
-                <div class="mb-6">
-                    <h3 class="text-slate-800 font-bold text-lg mb-4 flex items-center gap-2">
-                        <i data-lucide="map" class="w-5 h-5 text-brand-500"></i> Seu Itinerário
-                    </h3>
-                    <div class="space-y-6 relative ml-2">
-                        <!-- Linha Vertical -->
-                        <div class="absolute left-[19px] top-2 bottom-2 w-[2px] bg-slate-200"></div>
-                        
-                        <!-- Dia 1 -->
-                        <div class="relative flex gap-6 group">
-                            <div class="w-10 h-10 rounded-full bg-brand-500 text-white flex items-center justify-center shrink-0 z-10 border-4 border-white shadow-md">1</div>
-                            <div class="flex-1 bg-white border border-slate-100 p-4 rounded-2xl shadow-sm">
-                                <span class="text-brand-600 text-xs font-bold uppercase mb-1 block">Chegada</span>
-                                <p class="text-slate-600 text-sm">Check-in no hotel e drink de boas-vindas. Jantar leve à beira-mar.</p>
-                            </div>
-                        </div>
-
-                        <!-- Dia 2 -->
-                        <div class="relative flex gap-6 group">
-                            <div class="w-10 h-10 rounded-full bg-white text-slate-500 flex items-center justify-center shrink-0 z-10 border-4 border-slate-50 font-bold">2</div>
-                            <div class="flex-1 bg-white border border-slate-100 p-4 rounded-2xl shadow-sm">
-                                <span class="text-brand-600 text-xs font-bold uppercase mb-1 block">Exploração</span>
-                                <p class="text-slate-600 text-sm">Manhã focada em ${appState.user.style}. Visita guiada aos pontos principais.</p>
-                            </div>
-                        </div>
-
-                        <!-- Dia 3 -->
-                        <div class="relative flex gap-6 group">
-                            <div class="w-10 h-10 rounded-full bg-white text-slate-500 flex items-center justify-center shrink-0 z-10 border-4 border-slate-50 font-bold">3</div>
-                            <div class="flex-1 bg-white border border-slate-100 p-4 rounded-2xl shadow-sm">
-                                <span class="text-brand-600 text-xs font-bold uppercase mb-1 block">Livre</span>
-                                <p class="text-slate-600 text-sm">Dia livre para compras de artesanato local e gastronomia.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-r from-brand-50 to-white border border-brand-100 rounded-2xl p-5 shadow-sm">
-                    <div class="flex items-start gap-4">
-                        <div class="p-2 bg-white rounded-lg shadow-sm text-brand-500">
-                            <i data-lucide="lightbulb" class="w-6 h-6"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-slate-800 text-sm mb-1">Dica Decida.Ai</h4>
-                            <p class="text-xs text-slate-600 leading-relaxed">Para aproveitar ao máximo o estilo <strong>${appState.user.style}</strong>, recomendamos acordar cedo para ver o nascer do sol na praia principal.</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.getElementById('dynamic-content').innerHTML = html;
-            lucide.createIcons();
+            } catch (e) {
+                alert("Erro ao conectar com a IA: " + e.message);
+                goToStep('step-plan');
+            }
         }
 
         // Init
@@ -570,3 +656,4 @@
     </script>
 </body>
 </html>
+
